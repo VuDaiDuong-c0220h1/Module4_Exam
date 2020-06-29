@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update City Information</title>
+</head>
+<body>
+<h2>Chỉnh sửa thông tin thành phố</h2>
+<form th:action="@{/edited/__${city.id}__}" th:object="${city}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Tên:</td>
+            <td><input type="text" th:field="*{cityName}" /></td>
+            <td th:if="${#fields.hasErrors('cityName')}" th:errors="*{cityName}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Quốc gia:</td>
+            <td>
+                <select th:field="*{country}" >
+                    <option value="Việt Nam">Việt Nam</option>
+                    <option value="Mỹ">Mỹ</option>
+                    <option value="Trung Quốc">Trung Quốc</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Diện tích:</td>
+            <td><input type="text" th:field="*{area}" /></td>
+            <td th:if="${#fields.hasErrors('area')}" th:errors="*{area}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Dân số:</td>
+            <td><input type="text" th:field="*{population}"  /></td>
+            <td th:if="${#fields.hasErrors('population')}" th:errors="*{population}">Name Error</td>
+        </tr>
+        <tr>
+            <td>GDP:</td>
+            <td><input type="text" th:field="*{gdp}" /></td>
+            <td th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Giới thiệu:</td>
+            <td><textarea rows="5" th:field="*{description}" ></textarea></td>
+            <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><button type="submit">Chỉnh sửa</button> </td>
+            <td><button><a th:href="@{/}">Về trang chủ</a></button></td>
+
+        </tr>
+    </table>
+</form>
+</body>
+</html>

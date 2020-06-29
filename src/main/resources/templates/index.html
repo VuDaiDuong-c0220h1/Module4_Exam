@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+<div class="w3-container">
+    <h2>Danh sách thành phố</h2>
+    <button><a th:href="@{/create}">Thêm thành phố</a></button>
+    <table class="w3-table-all w3-hoverable">
+        <thead>
+        <tr class="w3-light-grey">
+            <td>#</td>
+            <td>Thành phố</td>
+            <td>Quốc Gia</td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="city : ${cityList}">
+            <tr class="w3-light-grey">
+                <td th:text="${city.id}"></td>
+                <td><a th:href="@{/viewDetail/__${city.id}__}" th:text="${city.cityName}"></a></td>
+                <td th:text="${city.country}"></td>
+                <td><a th:href="@{/edit/__${city.id}__}">Chỉnh sửa</a> | <a th:href="@{/delete/__${city.id}__}" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>  </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
